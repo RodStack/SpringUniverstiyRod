@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Alumnos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body { background-color: lightblue; }
+        .card-custom { background-color: #f0f8ff; margin-bottom: 15px; }
+        .card-header-custom { background-color: #87cefa; color: white; }
+        .header-logo { width: 200px; height: auto; }
+        
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <!-- Logo in the top left corner -->
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <img src="rfuenzalidadevlogo.png" alt="Logo" class="header-logo">
+            </div>
+        </div>
+		<hr>
+		<br>
+        <h1 class="mb-4">Filtrar Alumnos por Especialidad y Curso</h1>
+        <form action="#" th:action="@{/alumnos}" method="get">
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="especialidad">Especialidad</label>
+                    <select id="especialidad" name="especialidadId" class="form-control" onchange="this.form.submit()">
+                        <option value="">Seleccione una especialidad</option>
+                        <option th:each="especialidad : ${especialidades}"
+                                th:value="${especialidad.id}"
+                                th:text="${especialidad.descripcion}"
+                                th:selected="${especialidad.id == selectedEspecialidadId}"></option>
+                    </select>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="curso">Curso</label>
+                    <select id="curso" name="cursoId" class="form-control" onchange="this.form.submit()">
+                        <option value="">Seleccione un curso</option>
+                        <option th:each="curso : ${cursos}"
+                                th:value="${curso.id}"
+                                th:text="${curso.descripcion}"
+                                th:selected="${curso.id == selectedCursoId}"></option>
+                    </select>
+                </div>
+                <div class="form-group col-md-4 align-self-end">
+                    <button type="submit" class="btn btn-primary">Buscar</button>
+                </div>
+            </div>
+        </form>
+
+        <div class="row">
+            <div th:if="${alumnoCursos}" th:each="alumnoCurso : ${alumnoCursos}" class="col-md-4">
+                <div class="card card-custom">
+                    <div class="card-header card-header-custom">
+                        <h5 class="card-title" th:text="${alumnoCurso.alumno.nombre} + ' ' + ${alumnoCurso.alumno.apellido}"></h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text"><strong>Email:</strong> <span th:text="${alumnoCurso.alumno.email}"></span></p>
+                        <p class="card-text"><strong>Curso:</strong> <span th:text="${alumnoCurso.curso.descripcion}"></span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
