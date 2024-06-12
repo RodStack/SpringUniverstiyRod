@@ -40,5 +40,5 @@ Para acceder al sistema, visita http://localhost:9091/ en tu navegador web y uti
 Usuario: user
 Contraseña: 1234
 
-![Captura de pantalla 2024-06-11 000059](https://github.com/Curso-Java-04/repo-rodrigo-fuenzalida/assets/57158158/bbf343a4-78d3-471a-b722-4a0fd48be10e)
+![Captura de pantalla 2024-06-11 000059](https://github.com/RodStack/SpringUniverstiyRod/assets/57158158/5b1fe013-8b05-44c2-a2f0-988d7e376cfe)
 
